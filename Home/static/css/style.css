@@ -1,0 +1,63 @@
+/* Barra de promoção */
+.promo-bar {
+  background: #173f24 !important;
+  color: white !important;
+  text-align: center !important;
+  padding: 10px !important;
+  font-size: 20px !important;
+}
+
+/* Navegação */
+nav.navbar {
+  background-color: white !important;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+  font-size: 15px !important;
+  padding-right: 5em !important;
+  padding-left: 5em !important;
+}
+
+/* Estilização do carrossel */
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5) !important; /* fundo escuro semitransparente */
+  padding: 20px !important;
+  border-radius: 10px !important;
+}
+
+.carousel-caption h5 {
+  font-size: 2.5rem !important;
+  font-weight: bold !important;
+  color: #fff !important;
+  text-shadow: 2px 2px 6px #000 !important;
+}
+
+
+.frase-pacotes{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+  padding-top: 1.2em !important;
+  text-align: center !important;
+}
+
+
+.card-title {
+  font-size: 1.2rem !important;
+}
+
+.btn-primary {
+  background-color: #40A2E3 !important;
+  border: none !important;
+}
+
+.btn-primary:hover {
+  background-color: #358ed1 !important;
+}
+
+.promo-cupom .btn-primary {
+  background-color: #40A2E3 !important;
+  border: none !important;
+  font-weight: bold !important;
+  padding-left: 1em !important;
+}
+
+.promo-cupom .btn-primary:hover {
+  background-color: #358ed1 !important;
+}
