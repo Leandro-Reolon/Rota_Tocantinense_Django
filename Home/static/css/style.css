@@ -14,6 +14,8 @@ nav.navbar {
   font-size: 15px !important;
   padding-right: 5em !important;
   padding-left: 5em !important;
+  z-index: 1050 !important;
+  position: relative !important;
 }
 
 /* Estilização do carrossel */
