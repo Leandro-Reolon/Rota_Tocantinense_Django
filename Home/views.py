@@ -1,15 +1,21 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .models import Pacote
+from .models import Pacote, Cupom, MaisProcurado
 from django.contrib.auth.decorators import login_required
 
 def inicio(request):
     pacotes = Pacote.objects.all()
-    return render(request, 'home/inicio.html', {'pacotes': pacotes})
+    mais_procurados = MaisProcurado.objects.all()
+    return render(request, 'home/inicio.html', {
+        'pacotes': pacotes,
+        'mais_procurados': mais_procurados
+    })
 
 def cadastro(request):
     if request.method == 'POST':
+        if not request.POST.get('lgpd'):
+            return render(request, 'home/cadastro.html', {'erro': 'Você deve aceitar os termos da LGPD.'})
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
@@ -46,3 +52,7 @@ def perfil(request):
         user.save()
         return render(request, 'home/perfil.html', {'msg': 'Dados atualizados com sucesso!'})
     return render(request, 'home/perfil.html')
+
+def cupons(request):
+    cupons = Cupom.objects.all()
+    return render(request, 'home/cupons.html', {'cupons': cupons})

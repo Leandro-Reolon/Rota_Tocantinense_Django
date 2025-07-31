@@ -10,11 +10,11 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Link para o CSS personalizado -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-.navbar {
-    z-index: 1050;
-    position: relative;
-}
-</style>
+    .navbar {
+      z-index: 1050;
+      position: relative;
+    }
+  </style>
 </head>
 
 <body>
@@ -33,20 +33,23 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="#">Cupons</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'cupons' %}">Cupons</a>
+          </li>
           <li class="nav-item"><a class="nav-link" href="#">Passeios</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Hospedagens</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Sobre Nós</a></li>
           <li class="nav-item">
             {% if user.is_authenticated %}
-              <a class="nav-link" href="{% url 'perfil' %}">{{ user.first_name|default:user.username }}</a>
+            <a class="nav-link" href="{% url 'perfil' %}">{{ user.first_name|default:user.username }}</a>
             {% else %}
-              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
             {% endif %}
           </li>
         </ul>
       </div>
     </nav>
+
     <!-- Destinado ao Carrosel-->
     <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
@@ -73,100 +76,29 @@
       <span class="carousel-control-next-icon"></span>
     </button>
     </div>
-
   </header>
   <!-- FIM DO HEADER -->
+
   <main>
     <section class="container my-5">
       <h2 class="text-center mb-4">PACOTES MAIS POPULARES</h2>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
 
-        <!-- Card 1: Jalapão -->
-
-
+        <!-- Cards -->
         {% for pacote in pacotes %}
-<div class="card">
-    <img src="{{ pacote.imagem.url }}" alt="{{ pacote.nome }}">
-    <h3>{{ pacote.nome }}</h3>
-    <ul>
-        {% if pacote.cafe_da_manha %}<li>Café da manhã</li>{% endif %}
-        {% if pacote.translados %}<li>Translados</li>{% endif %}
-        {% if pacote.hospedagem %}<li>Hospedagem</li>{% endif %}
-        {% if pacote.viagem %}<li>Viagem</li>{% endif %}
-    </ul>
-    <button>VER PACOTE!</button>
-</div>
-{% endfor %}
-
-
-
-        <div class="col">
-          <div class="card h-100 text-center">
-            <img src="{% static 'img/dunas.png' %}" class="card-img-top" alt="Jalapão">
-            <div class="card-body">
-              <h5 class="card-title fw-bold">JALAPÃO</h5>
-              <ul class="list-unstyled text-start">
-                <li>• Café da manhã</li>
-                <li>• Translados</li>
-                <li>• Hospedagem</li>
-                <li>• Viagem</li>
-              </ul>
-              <a href="#" class="btn btn-primary">VER PACOTE!</a>
-            </div>
-          </div>
+        <div class="card">
+          <img src="{{ pacote.imagem.url }}" alt="{{ pacote.nome }}">
+          <h3>{{ pacote.nome }}</h3>
+          <ul>
+            {% if pacote.cafe_da_manha %}<li>Café da manhã</li>{% endif %}
+            {% if pacote.translados %}<li>Translados</li>{% endif %}
+            {% if pacote.hospedagem %}<li>Hospedagem</li>{% endif %}
+            {% if pacote.viagem %}<li>Viagem</li>{% endif %}
+          </ul>
+          <button>VER PACOTE!</button>
         </div>
+        {% endfor %}
 
-        <!-- Card 2: Praias -->
-        <div class="col">
-          <div class="card h-100 text-center">
-            <img src="{% static 'img/praia.png' %}" class="card-img-top" alt="Praias">
-            <div class="card-body">
-              <h5 class="card-title fw-bold">PRAIAS</h5>
-              <ul class="list-unstyled text-start">
-                <li>• Café da manhã</li>
-                <li>• Translados</li>
-                <li>• Hospedagem</li>
-                <li>• Viagem</li>
-              </ul>
-              <a href="#" class="btn btn-primary">VER PACOTE!</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: Natividade -->
-        <div class="col">
-          <div class="card h-100 text-center">
-            <img src="{% static 'img/natividade.png' %}" class="card-img-top" alt="Natividade-TO">
-            <div class="card-body">
-              <h5 class="card-title fw-bold">NATIVIDADE–TO</h5>
-              <ul class="list-unstyled text-start">
-                <li>• Café da manhã</li>
-                <li>• Translados</li>
-                <li>• Hospedagem</li>
-                <li>• Viagem</li>
-              </ul>
-              <a href="#" class="btn btn-primary">VER PACOTE!</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4: Palmas -->
-        <div class="col">
-          <div class="card h-100 text-center">
-            <img src="{% static 'img/palmas.png' %}" class="card-img-top" alt="Palmas-TO">
-            <div class="card-body">
-              <h5 class="card-title fw-bold">PALMAS–TO</h5>
-              <ul class="list-unstyled text-start">
-                <li>• Café da manhã</li>
-                <li>• Translados</li>
-                <li>• Hospedagem</li>
-                <li>• Viagem</li>
-              </ul>
-              <a href="#" class="btn btn-primary">VER PACOTE!</a>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
     <!-- CUPOM -->
     <section class="promo-cupom my-5">
@@ -175,14 +107,15 @@
 
         <!-- Imagem dos cupons -->
         <div class="promo-img">
-          <img src="{% static 'img/CUPOM.png' %}" width="100%" alt="Cupons de Desconto" class="img-fluid" style="max-height: 120px;">
+          <img src="{% static 'img/CUPOM.png' %}" width="100%" alt="Cupons de Desconto" class="img-fluid"
+            style="max-height: 120px;">
         </div>
 
         <!-- Texto e botão -->
         <div class="promo-text text-center text-md-start">
           <h5 class="mb-2 fw-bold">Tenha mais Descontos! Pegue já, <br> Seu Cupom <span class="text-primary">ROTA
               TOCANTINENSE.</span></h5>
-          <a href="#" class="btn btn-primary px-4 rounded-pill">COMEÇAR SUA JORNADA!</a>
+          <a href="{% url 'cupons' %}" class="btn btn-primary px-4 rounded-pill">COMEÇAR SUA JORNADA!</a>
         </div>
       </div>
     </section>
@@ -210,74 +143,25 @@
     <section class="container my-5">
       <h2 class="text-center mb-4">MAIS PROCURADOS</h2>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-
-        <!-- Card 1: Jalapão -->
+        {% for item in mais_procurados %}
         <div class="col">
           <div class="card h-100 text-center">
-            <img src="{% static 'img/dunas.png' %}" class="card-img-top" alt="Jalapão">
+            <img src="{{ item.imagem.url }}" class="card-img-top" alt="{{ item.titulo }}">
             <div class="card-body">
-              <h5 class="card-title fw-bold">HOTEIS</h5>
+              <h5 class="card-title fw-bold">{{ item.titulo }}</h5>
               <ul class="list-unstyled text-start">
-                <li>• ALTERAR</li>
-                <li>• ALTERAR</li>
-                <li>• ALTERAR</li>
-                <li>• ALTERAR</li>
+                {% if item.descricao1 %}<li>• {{ item.descricao1 }}</li>{% endif %}
+                {% if item.descricao2 %}<li>• {{ item.descricao2 }}</li>{% endif %}
+                {% if item.descricao3 %}<li>• {{ item.descricao3 }}</li>{% endif %}
+                {% if item.descricao4 %}<li>• {{ item.descricao4 }}</li>{% endif %}
               </ul>
-              <a href="#" class="btn btn-primary">VER HOTEIS!</a>
+              <a href="{{ item.botao_link }}" class="btn btn-primary">{{ item.botao_texto }}</a>
             </div>
           </div>
         </div>
-
-        <!-- Card 2: Praias -->
-        <div class="col">
-          <div class="card h-100 text-center">
-            <img src="{% static 'img/praia.png' %}" class="card-img-top" alt="Praias">
-            <div class="card-body">
-              <h5 class="card-title fw-bold">RESTAURANTES</h5>
-              <ul class="list-unstyled text-start">
-                <li>• ALTERAR</li>
-                <li>• ALTERAR</li>
-                <li>• ALTERAR</li>
-                <li>• ALTERAR</li>
-              </ul>
-              <a href="#" class="btn btn-primary">VER RESTAURANTES!</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: Natividade -->
-        <div class="col">
-          <div class="card h-100 text-center">
-            <img src="{% static 'img/natividade.png' %}" class="card-img-top" alt="Natividade-TO">
-            <div class="card-body">
-              <h5 class="card-title fw-bold">ATRATIVOS</h5>
-              <ul class="list-unstyled text-start">
-                <li>• ALTERAR</li>
-                <li>• ALTERAR</li>
-                <li>• ALTERAR</li>
-                <li>• ALTERAR</li>
-              </ul>
-              <a href="#" class="btn btn-primary">VER ATRAÇÔES!</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4: Palmas -->
-        <div class="col">
-          <div class="card h-100 text-center">
-            <img src="{% static 'img/palmas.png' %}" class="card-img-top" alt="Palmas-TO">
-            <div class="card-body">
-              <h5 class="card-title fw-bold">EVENTOS</h5>
-              <ul class="list-unstyled text-start">
-                <li>• ALTERAR</li>
-                <li>• ALTERAR</li>
-                <li>• ALTERAR</li>
-                <li>• ALTERAR</li>
-              </ul>
-              <a href="#" class="btn btn-primary">VER EVENTOS!</a>
-            </div>
-          </div>
-        </div>
+        {% empty %}
+        <p class="text-center">Nenhum item cadastrado.</p>
+        {% endfor %}
       </div>
     </section>
     <div class="promo-bar"> O Passeio que você merece!</div>
