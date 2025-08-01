@@ -56,3 +56,6 @@ def perfil(request):
 def cupons(request):
     cupons = Cupom.objects.all()
     return render(request, 'home/cupons.html', {'cupons': cupons})
+
+def sobrenos(request):
+    return render(request, 'home/sobrenos.html')

@@ -36,17 +36,16 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'cupons' %}">Cupons</a>
           </li>
-          <li class="nav-item"><a class="nav-link" href="#">Passeios</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Hospedagens</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Sobre Nós</a></li>
-          <li class="nav-item">
+          <li class="nav-item"><a class="nav-link" href="#">Passeios</a></li> <!-- Update this line later -->
+          <li class="nav-item"><a class="nav-link" href="#">Hospedagens</a></li> <!-- Update this line later -->
+          <li class="nav-item"><a class="nav-link" href="{% url 'sobrenos' %}">Sobre Nós</a></li>
             {% if user.is_authenticated %}
             <a class="nav-link" href="{% url 'perfil' %}">{{ user.first_name|default:user.username }}</a>
             {% else %}
             <a class="nav-link" href="{% url 'login' %}">Login</a>
             {% endif %}
           </li>
-        </ul>
+        </ul> 
       </div>
     </nav>
 
