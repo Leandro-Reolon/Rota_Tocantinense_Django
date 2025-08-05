@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passeios - Rota Tocantinense</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'inicio' %}">
+                <img src="{% static 'img/Design sem nome.png' %}" alt="Logo Rota Tocantinense" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'cupons' %}">Cupons</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'passeios' %}">Passeios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Hospedagens</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'sobrenos' %}">Sobre Nós</a></li>
+                    <li class="nav-item">
+                        {% if user.is_authenticated %}
+                            <a class="nav-link" href="{% url 'perfil' %}">{{ user.first_name|default:user.username }}</a>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <div class="container my-5 flex-grow-1">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold">Nossos Passeios</h1>
+            <p class="lead text-muted">Explore as maravilhas do Tocantins com nossos roteiros exclusivos.</p>
+        </div>
+
+        <!-- Filtros (Opcional) -->
+        <div class="row mb-4 justify-content-center">
+            <div class="col-md-4 mb-2">
+                <input type="text" class="form-control" placeholder="Buscar por nome do passeio...">
+            </div>
+            <div class="col-md-3 mb-2">
+                <select class="form-select">
+                    <option selected>Filtrar por região...</option>
+                    <option value="jalapao">Jalapão</option>
+                    <option value="serrasgerais">Serras Gerais</option>
+                    <option value="palmas">Palmas e Arredores</option>
+                </select>
+            </div>
+            <div class="col-md-2 mb-2">
+                 <button class="btn btn-primary w-100">Buscar</button>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for passeio in passeios %}
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="{{ passeio.imagem.url }}" class="card-img-top" alt="{{ passeio.nome }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">{{ passeio.nome }}</h5>
+                        <p class="card-text text-muted flex-grow-1">{{ passeio.descricao_curta }}</p>
+                        <p class="card-text h4 fw-bold text-success">R$ {{ passeio.preco|floatformat:2 }}</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 p-3">
+                        <a href="#" class="btn btn-primary w-100 fw-bold">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info text-center" role="alert">
+                    Nenhum passeio encontrado. Em breve teremos novas aventuras!
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-light py-4">
+        <div class="container text-center">
+            <p>© Rota Tocantinense</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+ </body>
+ </html>

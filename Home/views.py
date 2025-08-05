@@ -1,15 +1,17 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .models import Pacote, Cupom, MaisProcurado
+from .models import Pacote, Cupom, MaisProcurado, Passeio, Promocao
 from django.contrib.auth.decorators import login_required
 
 def inicio(request):
     pacotes = Pacote.objects.all()
     mais_procurados = MaisProcurado.objects.all()
+    promocoes = Promocao.objects.all()
     return render(request, 'home/inicio.html', {
         'pacotes': pacotes,
-        'mais_procurados': mais_procurados
+        'mais_procurados': mais_procurados,
+        'promocoes': promocoes
     })
 
 def cadastro(request):
@@ -59,3 +61,11 @@ def cupons(request):
 
 def sobrenos(request):
     return render(request, 'home/sobrenos.html')
+
+def passeios(request):
+    passeios = Passeio.objects.all()
+    return render(request, 'home/passeios.html', {'passeios': passeios})
+
+def passeio_detalhes(request, passeio_id):
+    passeio = get_object_or_404(Passeio, pk=passeio_id)
+    return render(request, 'home/passeio_detalhes.html', {'passeio': passeio})
