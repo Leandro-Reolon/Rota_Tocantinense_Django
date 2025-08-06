@@ -63,3 +63,9 @@ nav.navbar {
 .promo-cupom .btn-primary:hover {
   background-color: #358ed1 !important;
 }
+
+.gallery-image {
+  height: 200px !important; /* Defina a altura desejada */
+  object-fit: cover !important;
+  width: 100% !important;
+}

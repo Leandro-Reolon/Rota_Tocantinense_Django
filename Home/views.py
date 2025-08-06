@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .models import Pacote, Cupom, MaisProcurado, Passeio, Promocao
+from .models import Pacote, Cupom, MaisProcurado, Passeio, Promocao, Hospedagem, Evento
 from django.contrib.auth.decorators import login_required
 
 def inicio(request):
@@ -63,9 +63,37 @@ def sobrenos(request):
     return render(request, 'home/sobrenos.html')
 
 def passeios(request):
-    passeios = Passeio.objects.all()
+    query = request.GET.get('q')
+    if query:
+        passeios = Passeio.objects.filter(nome__icontains=query)
+    else:
+        passeios = Passeio.objects.all()
     return render(request, 'home/passeios.html', {'passeios': passeios})
 
 def passeio_detalhes(request, passeio_id):
     passeio = get_object_or_404(Passeio, pk=passeio_id)
     return render(request, 'home/passeio_detalhes.html', {'passeio': passeio})
+
+def hospedagens(request):
+    query = request.GET.get('q')
+    if query:
+        hospedagens = Hospedagem.objects.filter(nome__icontains=query)
+    else:
+        hospedagens = Hospedagem.objects.all()
+    return render(request, 'home/hospedagens.html', {'hospedagens': hospedagens})
+
+def hospedagem_detalhes(request, hospedagem_id):
+    hospedagem = get_object_or_404(Hospedagem, pk=hospedagem_id)
+    return render(request, 'home/hospedagem_detalhes.html', {'hospedagem': hospedagem})
+
+def eventos(request):
+    query = request.GET.get('q')
+    if query:
+        eventos = Evento.objects.filter(nome__icontains=query)
+    else:
+        eventos = Evento.objects.all()
+    return render(request, 'home/eventos.html', {'eventos': eventos})
+
+def evento_detalhes(request, evento_id):
+    evento = get_object_or_404(Evento, pk=evento_id)
+    return render(request, 'home/evento_detalhes.html', {'evento': evento})

@@ -25,7 +25,8 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Início</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'cupons' %}">Cupons</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'passeios' %}">Passeios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Hospedagens</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'hospedagens' %}">Hospedagens</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'eventos' %}">Eventos</a></li>
                     <li class="nav-item"><a class="nav-link active" href="{% url 'sobrenos' %}">Sobre Nós</a></li>
                     <li class="nav-item">
                         {% if user.is_authenticated %}
