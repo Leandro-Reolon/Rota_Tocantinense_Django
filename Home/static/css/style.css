@@ -1,71 +1,191 @@
-/* Barra de promoção */
+/*
+  MELHORIAS NO CSS - Rota Tocantinense
+  - Uso de Variáveis CSS para fácil manutenção.
+  - Reset básico e box-sizing para consistência.
+  - Remoção de '!important' para um código mais limpo.
+  - Adição de transições suaves (hover).
+  - Melhorias de responsividade com Media Queries.
+*/
+
+/* --- VARIÁVEIS GLOBAIS (CUSTOM PROPERTIES) --- */
+:root {
+  /* Paleta de Cores */
+  --cor-primaria: #40A2E3; /* Azul principal */
+  --cor-primaria-hover: #358ed1; /* Azul mais escuro para hover */
+  --cor-destaque: #173f24; /* Verde da barra de promoção */
+  --cor-texto: #333; /* Cor de texto padrão */
+  --cor-fundo: #fff; /* Fundo principal */
+  --cor-fundo-secao: #f8f9fa; /* Fundo para seções */
+
+  /* Tipografia */
+  --fonte-principal: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  --fonte-destaque: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+  /* Transições */
+  --transicao-suave: all 0.3s ease-in-out;
+}
+
+/* --- RESET BÁSICO E CONFIGURAÇÕES GLOBAIS --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Garante que padding e borda não afetem o tamanho final do elemento */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fonte-principal);
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+}
+
+/* --- BARRA DE PROMOÇÃO --- */
 .promo-bar {
-  background: #173f24 !important;
-  color: white !important;
-  text-align: center !important;
-  padding: 10px !important;
-  font-size: 20px !important;
+  background-color: var(--cor-destaque);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 18px; /* Ajuste de fonte para melhor leitura */
 }
 
-/* Navegação */
-nav.navbar {
-  background-color: white !important;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
-  font-size: 15px !important;
-  padding-right: 5em !important;
-  padding-left: 5em !important;
-  z-index: 1050 !important;
-  position: relative !important;
+/* --- NAVEGAÇÃO --- */
+.navbar {
+  background-color: var(--cor-fundo);
+  font-size: 16px;
+  padding: 1rem 5em; /* Uso de rem para melhor acessibilidade */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil para destacar a navbar */
 }
 
-/* Estilização do carrossel */
+.nav-link {
+  transition: var(--transicao-suave);
+}
+
+.nav-link:hover {
+  color: var(--cor-primaria);
+  transform: translateY(-2px); /* Efeito de elevação */
+}
+
+/* --- CARROSSEL --- */
+.carousel-item img {
+  /* Previne o "salto" da página causado pelo lazy loading */
+  aspect-ratio: 16 / 6; /* Proporção da imagem (ajuste se necessário) */
+  object-fit: cover; /* Garante que a imagem cubra o espaço */
+  width: 100%;
+  background-color: #eee; /* Cor de fundo enquanto a imagem carrega */
+}
+
 .carousel-caption {
-  background-color: rgba(0, 0, 0, 0.5) !important; /* fundo escuro semitransparente */
-  padding: 20px !important;
-  border-radius: 10px !important;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .carousel-caption h5 {
-  font-size: 2.5rem !important;
-  font-weight: bold !important;
-  color: #fff !important;
-  text-shadow: 2px 2px 6px #000 !important;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 6px #000;
 }
 
-
-.frase-pacotes{
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
-  padding-top: 1.2em !important;
-  text-align: center !important;
-}
-
-
-.card-title {
-  font-size: 1.2rem !important;
-}
-
+/* --- BOTÕES --- */
 .btn-primary {
-  background-color: #40A2E3 !important;
-  border: none !important;
+  background-color: var(--cor-primaria);
+  border: none;
+  transition: var(--transicao-suave);
 }
 
 .btn-primary:hover {
-  background-color: #358ed1 !important;
+  background-color: var(--cor-primaria-hover);
+  transform: scale(1.05); /* Efeito de crescimento */
 }
 
+/* --- SEÇÕES E CARDS --- */
+.frase-pacotes {
+  font-family: var(--fonte-destaque);
+  padding-top: 1.2em;
+  text-align: center;
+}
+
+.card {
+  transition: var(--transicao-suave);
+  border: 1px solid #eee;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.card-title {
+  font-size: 1.2rem;
+}
+
+/* --- GALERIA DE IMAGENS (Passeio Detalhes) --- */
+/* Seletor mais específico para sobrescrever o Bootstrap */
+#fotos .gallery-image {
+  height: 200px; /* Altura fixa para todas as imagens da galeria */
+  width: 100%;   /* Garante que a imagem ocupe toda a largura da coluna */
+  object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+  border-radius: 0.25rem; /* Cantos arredondados */
+  transition: var(--transicao-suave);
+}
+
+#fotos .gallery-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* --- SEÇÃO DE CUPOM --- */
 .promo-cupom .btn-primary {
-  background-color: #40A2E3 !important;
-  border: none !important;
-  font-weight: bold !important;
-  padding-left: 1em !important;
+  font-weight: bold;
 }
 
-.promo-cupom .btn-primary:hover {
-  background-color: #358ed1 !important;
+/* --- ANIMAÇÕES AO ROLAR --- */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.gallery-image {
-  height: 200px !important; /* Defina a altura desejada */
-  object-fit: cover !important;
-  width: 100% !important;
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- RESPONSIVIDADE (MEDIA QUERIES) --- */
+
+/* Para tablets e dispositivos menores */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 2em;
+  }
+
+  .carousel-caption h5 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Para celulares */
+@media (max-width: 576px) {
+  .promo-bar {
+    font-size: 16px;
+  }
+
+  .navbar {
+    padding: 1rem 1em;
+  }
+
+  .carousel-caption h5 {
+    font-size: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  /* Seletor mais específico para a galeria em telas pequenas */
+  #fotos .gallery-image {
+    height: 150px; /* Altura menor para telas pequenas */
+  }
 }
