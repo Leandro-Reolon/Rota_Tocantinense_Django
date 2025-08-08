@@ -10,8 +10,8 @@
 /* --- VARIÁVEIS GLOBAIS (CUSTOM PROPERTIES) --- */
 :root {
   /* Paleta de Cores */
-  --cor-primaria: #40A2E3; /* Azul principal */
-  --cor-primaria-hover: #358ed1; /* Azul mais escuro para hover */
+  --cor-primaria: #28a745; /* Verde claro */
+  --cor-primaria-hover: #218838; /* Verde mais escuro para hover */
   --cor-destaque: #173f24; /* Verde da barra de promoção */
   --cor-texto: #333; /* Cor de texto padrão */
   --cor-fundo: #fff; /* Fundo principal */
@@ -53,21 +53,32 @@ body {
 .navbar {
   background-color: var(--cor-fundo);
   font-size: 16px;
-  padding: 1rem 5em; /* Uso de rem para melhor acessibilidade */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil para destacar a navbar */
+  padding: 1rem 5em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .nav-link {
   transition: var(--transicao-suave);
+  border-radius: 50px; /* Cantos arredondados para o efeito pílula */
+  padding: 8px 15px !important; /* Ajuste no padding */
+  margin: 0 5px; /* Espaçamento entre os botões */
 }
 
 .nav-link:hover {
-  color: var(--cor-primaria);
-  transform: translateY(-2px); /* Efeito de elevação */
+  background-color: var(--cor-primaria);
+  color: var(--cor-fundo) !important; /* Texto branco no hover */
+  transform: translateY(-2px);
+}
+
+/* Estilo para o link ativo ou quando a seção correspondente está visível */
+.nav-link.active {
+  background-color: var(--cor-primaria);
+  color: var(--cor-fundo) !important;
+  font-weight: bold;
 }
 
 /* --- CARROSSEL --- */
-.carousel-item img {
+.carousel-item img, .carousel-video {
   /* Previne o "salto" da página causado pelo lazy loading */
   aspect-ratio: 16 / 6; /* Proporção da imagem (ajuste se necessário) */
   object-fit: cover; /* Garante que a imagem cubra o espaço */
@@ -139,6 +150,28 @@ body {
 /* --- SEÇÃO DE CUPOM --- */
 .promo-cupom .btn-primary {
   font-weight: bold;
+}
+
+/* --- SEÇÃO DE PARCEIROS --- */
+.partner-circle {
+  background-color: #f0f8ff; /* Fundo azul claro */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  transition: var(--transicao-suave);
+  color: var(--cor-texto);
+  font-weight: bold;
+}
+
+.partner-circle:hover {
+  background-color: var(--cor-primaria);
+  color: var(--cor-fundo);
+  transform: scale(1.1);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
 
 /* --- ANIMAÇÕES AO ROLAR --- */

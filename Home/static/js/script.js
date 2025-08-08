@@ -24,10 +24,48 @@ function topFunction() {
     window.scrollTo({top: 0, behavior: 'smooth'}); // Rolagem suave
 }
 
-// --- MELHORIAS DE PERFORMANCE E EXPERIÊNCIA DO USUÁRIO ---
-
 // Executa o script quando o conteúdo do HTML estiver completamente carregado
 document.addEventListener("DOMContentLoaded", function() {
+
+    // --- CONTROLE DO CARROSSEL COM VÍDEO ---
+    const carouselElement = document.getElementById('mainCarousel');
+    const videoElement = document.getElementById('carouselVideo');
+
+    if (carouselElement && videoElement) {
+        const carousel = new bootstrap.Carousel(carouselElement, {
+            interval: 5000, // Intervalo para slides de imagem
+            pause: false
+        });
+
+        const handleSlideChange = () => {
+            const activeItem = carouselElement.querySelector('.carousel-item.active');
+
+            if (activeItem && activeItem.contains(videoElement)) {
+                carousel.pause();
+                videoElement.currentTime = 0;
+                const playPromise = videoElement.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.warn("A reprodução automática foi bloqueada. O usuário precisará interagir.");
+                        // Se a reprodução falhar, tratamos como uma imagem e avançamos após o intervalo
+                        setTimeout(() => carousel.next(), 5000);
+                    });
+                }
+            } else {
+                videoElement.pause();
+                carousel.cycle();
+            }
+        };
+
+        videoElement.addEventListener('ended', () => {
+            carousel.next();
+        });
+
+        carouselElement.addEventListener('slid.bs.carousel', handleSlideChange);
+
+        // Inicia a lógica para o primeiro slide
+        handleSlideChange();
+    }
 
     // --- BOTÃO 'VOLTAR AO TOPO' ---
     const backToTopBtn = document.getElementById("backToTopBtn");
@@ -91,4 +129,34 @@ document.addEventListener("DOMContentLoaded", function() {
             element.classList.add('is-visible');
         });
     }
+
+    // --- LINK ATIVO NA NAVEGAÇÃO ---
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    let currentPath = window.location.pathname;
+
+    // Normaliza o currentPath (remove a barra final, a menos que seja a raiz)
+    if (currentPath.endsWith('/') && currentPath.length > 1) {
+        currentPath = currentPath.slice(0, -1);
+    }
+
+    console.log("Normalized Current Path:", currentPath); // Adicionado para depuração
+
+    navLinks.forEach(link => {
+        let linkPath = link.getAttribute('href');
+
+        // Normaliza o linkPath (remove a barra final, a menos que seja a raiz)
+        if (linkPath.endsWith('/') && linkPath.length > 1) {
+            linkPath = linkPath.slice(0, -1);
+        }
+
+        console.log("Normalized Link Path:", linkPath); // Adicionado para depuração
+
+        // Remove a classe 'active' de todos os links primeiro
+        link.classList.remove('active');
+
+        // Adiciona a classe 'active' se os caminhos normalizados corresponderem
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        }
+    });
 });
