@@ -7,6 +7,22 @@
   - Melhorias de responsividade com Media Queries.
 */
 
+/* --- ANIMAÇÕES --- */
+
+/* Animação de brilho pulsante para chamar atenção */
+@keyframes pulse-light {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.1) inset;
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.2) inset;
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.1) inset;
+  }
+}
+
+
 /* --- VARIÁVEIS GLOBAIS (CUSTOM PROPERTIES) --- */
 :root {
   /* Paleta de Cores */
@@ -47,6 +63,8 @@ body {
   text-align: center;
   padding: 10px;
   font-size: 18px; /* Ajuste de fonte para melhor leitura */
+  /* Aplica a animação de brilho */
+  animation: pulse-light 2.5s infinite ease-in-out;
 }
 
 /* --- NAVEGAÇÃO --- */
@@ -153,26 +171,39 @@ body {
 }
 
 /* --- SEÇÃO DE PARCEIROS --- */
+/* Estilo base para todos os parceiros, centraliza o conteúdo (texto) por padrão */
 .partner-circle {
-  background-color: #f0f8ff; /* Fundo azul claro */
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100px;
+  height: 100px;
   margin: 0 auto;
+  background-color: #f0f8ff;
+  border-radius: 50%;
   transition: var(--transicao-suave);
   color: var(--cor-texto);
   font-weight: bold;
+  text-decoration: none;
 }
 
 .partner-circle:hover {
-  background-color: var(--cor-primaria);
-  color: var(--cor-fundo);
   transform: scale(1.1);
   box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
+
+/* Modificador para parceiros com imagem */
+.partner-circle.partner-circle-img {
+  padding: 0; /* Remove o padding para a imagem preencher o espaço */
+  overflow: hidden; /* Garante que a imagem seja cortada para caber no círculo */
+}
+
+.partner-circle.partner-circle-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cobre o espaço sem distorcer a imagem */
+}
+
 
 /* --- ANIMAÇÕES AO ROLAR --- */
 .animate-on-scroll {
@@ -221,4 +252,28 @@ body {
   #fotos .gallery-image {
     height: 150px; /* Altura menor para telas pequenas */
   }
+}
+
+/* --- BOTÃO VOLTAR AO TOPO --- */
+#backToTopBtn {
+  display: none; /* Escondido por padrão via JS */
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: #007bff; /* Cor azul original */
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#backToTopBtn:hover {
+  background-color: #0056b3; /* Azul mais escuro para hover */
+  transform: translateY(-2px);
 }
