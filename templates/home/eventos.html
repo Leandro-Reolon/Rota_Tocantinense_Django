@@ -71,8 +71,12 @@
 
     <!-- Footer -->
     <footer class="bg-black text-light py-4 mt-auto">
-        <div class="container text-center">
-            <p>© Rota Tocantinense</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; {% now "Y" %} Rota Tocantinense. Todos os direitos reservados.</p>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -82,19 +86,4 @@
 </html>
 
 <!-- Botão Voltar ao Topo -->
-<button onclick="topFunction()" id="backToTopBtn" title="Voltar ao Topo" style="
-    display: none; /* Escondido por padrão */
-    position: fixed; /* Posição fixa */
-    bottom: 20px; /* A 20px do fundo */
-    right: 30px; /* A 30px da direita */
-    z-index: 99; /* Acima de outros elementos */
-    border: none; /* Sem borda */
-    outline: none; /* Sem contorno */
-    background-color: #007bff; /* Cor de fundo */
-    color: white; /* Cor do texto/ícone */
-    cursor: pointer; /* Cursor de clique */
-    padding: 15px; /* Preenchimento */
-    border-radius: 10px; /* Cantos arredondados */
-    font-size: 18px; /* Tamanho da fonte */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
-"><i class="bi bi-arrow-up-short"></i></button>
+<button onclick="topFunction()" id="backToTopBtn" title="Voltar ao Topo"><i class="bi bi-arrow-up-short"></i></button>

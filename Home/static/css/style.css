@@ -25,20 +25,29 @@
 
 /* --- VARIÁVEIS GLOBAIS (CUSTOM PROPERTIES) --- */
 :root {
-  /* Paleta de Cores */
-  --cor-primaria: #28a745; /* Verde claro */
-  --cor-primaria-hover: #218838; /* Verde mais escuro para hover */
-  --cor-destaque: #173f24; /* Verde da barra de promoção */
-  --cor-texto: #333; /* Cor de texto padrão */
-  --cor-fundo: #fff; /* Fundo principal */
-  --cor-fundo-secao: #f8f9fa; /* Fundo para seções */
+  /* Color Palette */
+  --color-primary: #28a745; /* A vibrant green, representing nature/growth */
+  --color-primary-dark: #218838; /* Darker shade for hover/active states */
+  --color-secondary: #4a90e2; /* A calming blue, complementary to green */
+  --color-secondary-dark: #3a7bd5; /* Darker shade for secondary hover */
+  --color-accent: #f5a623; /* A warm orange for highlights/CTAs */
 
-  /* Tipografia */
-  --fonte-principal: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  --fonte-destaque: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  --color-text-dark: #333333; /* Main body text color */
+  --color-text-light: #ffffff; /* Text on dark backgrounds */
+  --color-text-muted: #6c757d; /* Muted text for secondary info */
 
-  /* Transições */
-  --transicao-suave: all 0.3s ease-in-out;
+  --color-background-light: #f8f9fa; /* Light background for sections */
+  --color-background-white: #ffffff; /* Pure white background */
+  --color-border: #dee2e6; /* Light border color */
+
+  /* Typography */
+  --font-family-base: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Modern sans-serif */
+  --font-family-heading: 'Poppins', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Stronger sans-serif for headings */
+  --font-size-base: 1rem; /* 16px */
+  --line-height-base: 1.6;
+
+  /* Transitions */
+  --transition-ease: all 0.3s ease-in-out;
 }
 
 /* --- RESET BÁSICO E CONFIGURAÇÕES GLOBAIS --- */
@@ -51,15 +60,24 @@
 }
 
 body {
-  font-family: var(--fonte-principal);
-  color: var(--cor-texto);
-  background-color: var(--cor-fundo);
+  font-family: var(--font-family-base);
+  color: var(--color-text-dark);
+  background-color: var(--color-background-white); /* Default background */
+}
+
+/* Gradient background for login/cadastro pages */
+.bg-gradient-primary {
+    background: linear-gradient(to right, #e0ffe0, #c0ffc0);
+}
+
+.text-primary {
+    color: var(--color-primary) !important;
 }
 
 /* --- BARRA DE PROMOÇÃO --- */
 .promo-bar {
-  background-color: var(--cor-destaque);
-  color: white;
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-light);
   text-align: center;
   padding: 10px;
   font-size: 18px; /* Ajuste de fonte para melhor leitura */
@@ -69,29 +87,29 @@ body {
 
 /* --- NAVEGAÇÃO --- */
 .navbar {
-  background-color: var(--cor-fundo);
+  background-color: var(--color-background-white);
   font-size: 16px;
   padding: 1rem 5em;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .nav-link {
-  transition: var(--transicao-suave);
+  transition: var(--transition-ease);
   border-radius: 50px; /* Cantos arredondados para o efeito pílula */
   padding: 8px 15px !important; /* Ajuste no padding */
   margin: 0 5px; /* Espaçamento entre os botões */
 }
 
 .nav-link:hover {
-  background-color: var(--cor-primaria);
-  color: var(--cor-fundo) !important; /* Texto branco no hover */
+  background-color: var(--color-primary);
+  color: var(--color-text-light) !important; /* Texto branco no hover */
   transform: translateY(-2px);
 }
 
 /* Estilo para o link ativo ou quando a seção correspondente está visível */
 .nav-link.active {
-  background-color: var(--cor-primaria);
-  color: var(--cor-fundo) !important;
+  background-color: var(--color-primary);
+  color: var(--color-text-light) !important;
   font-weight: bold;
 }
 
@@ -101,7 +119,7 @@ body {
   aspect-ratio: 16 / 6; /* Proporção da imagem (ajuste se necessário) */
   object-fit: cover; /* Garante que a imagem cubra o espaço */
   width: 100%;
-  background-color: #eee; /* Cor de fundo enquanto a imagem carrega */
+  background-color: var(--color-border); /* Cor de fundo enquanto a imagem carrega */
 }
 
 .carousel-caption {
@@ -113,32 +131,32 @@ body {
 .carousel-caption h5 {
   font-size: 2.2rem;
   font-weight: bold;
-  color: #fff;
+  color: var(--color-text-light);
   text-shadow: 2px 2px 6px #000;
 }
 
 /* --- BOTÕES --- */
 .btn-primary {
-  background-color: var(--cor-primaria);
+  background-color: var(--color-primary);
   border: none;
-  transition: var(--transicao-suave);
+  transition: var(--transition-ease);
 }
 
 .btn-primary:hover {
-  background-color: var(--cor-primaria-hover);
+  background-color: var(--color-primary-dark);
   transform: scale(1.05); /* Efeito de crescimento */
 }
 
 /* --- SEÇÕES E CARDS --- */
 .frase-pacotes {
-  font-family: var(--fonte-destaque);
+  font-family: var(--font-family-heading);
   padding-top: 1.2em;
   text-align: center;
 }
 
 .card {
-  transition: var(--transicao-suave);
-  border: 1px solid #eee;
+  transition: var(--transition-ease);
+  border: 1px solid var(--color-border);
 }
 
 .card:hover {
@@ -157,7 +175,7 @@ body {
   width: 100%;   /* Garante que a imagem ocupe toda a largura da coluna */
   object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
   border-radius: 0.25rem; /* Cantos arredondados */
-  transition: var(--transicao-suave);
+  transition: var(--transition-ease);
 }
 
 #fotos .gallery-image:hover {
@@ -179,10 +197,10 @@ body {
   width: 100px;
   height: 100px;
   margin: 0 auto;
-  background-color: #f0f8ff;
+  background-color: var(--color-background-light);
   border-radius: 50%;
-  transition: var(--transicao-suave);
-  color: var(--cor-texto);
+  transition: var(--transition-ease);
+  color: var(--color-text-dark);
   font-weight: bold;
   text-decoration: none;
 }
@@ -263,17 +281,38 @@ body {
   z-index: 99;
   border: none;
   outline: none;
-  background-color: #007bff; /* Cor azul original */
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 10px;
-  font-size: 18px;
+  background-color: var(--color-secondary); /* Cor azul original */
+  color: var(--color-text-light);
+  cursor: pointer; /* Cursor de clique */
+  padding: 15px; /* Preenchimento */
+  border-radius: 10px; /* Cantos arredondados */
+  font-size: 18px; /* Tamanho da fonte */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s, transform 0.3s;
+  transition: var(--transition-ease);
 }
 
 #backToTopBtn:hover {
-  background-color: #0056b3; /* Azul mais escuro para hover */
+  background-color: var(--color-secondary-dark); /* Azul mais escuro para hover */
+  transform: translateY(-2px);
+}
+
+/* --- FOOTER --- */
+.footer-main-logo {
+  max-width: 180px; /* Ajuste conforme necessário */
+  height: auto;
+}
+
+.footer-qr-code {
+  max-width: 100px; /* Ajuste conforme necessário */
+  height: auto;
+}
+
+.footer-social-icon {
+  font-size: 1.5rem; /* Ajuste o tamanho do ícone */
+  transition: var(--transition-ease);
+}
+
+.footer-social-icon:hover {
+  color: var(--color-primary) !important; /* Muda a cor no hover */
   transform: translateY(-2px);
 }

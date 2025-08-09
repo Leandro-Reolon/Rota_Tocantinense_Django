@@ -190,7 +190,7 @@
                 {% if item.descricao3 %}<li>• {{ item.descricao3 }}</li>{% endif %}
                 {% if item.descricao4 %}<li>• {{ item.descricao4 }}</li>{% endif %}
               </ul>
-              <a href="{{ item.botao_link }}" class="btn btn-primary">{{ item.botao_texto }}</a>
+              <a href="{{ item.botao_link }}" class="btn btn-primary">VER DETALHES</a>
             </div>
           </div>
         </div>
@@ -202,42 +202,63 @@
     <div class="promo-bar"> O Passeio que você merece!</div>
   </main>
 
-  <footer class="bg-black text-light py-1 position-relative">
-    <!-- Linha com slogan -->
-    <div
-      class="container d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start mt-4">
+  <footer class="bg-black text-light py-5 position-relative">
+    <div class="container">
+      <div class="row">
+        <!-- Coluna 1: Logo Grande -->
+        <div class="col-md-3 mb-4 mb-md-0 text-center text-md-start">
+          <img data-src="{% static 'img/logo branca.png' %}" alt="Logo Rota Tocantinense" class="img-fluid footer-main-logo lazy-load">
+          <p class="mt-2">Descubra o Tocantins com a Rota Tocantinense!</p>
+        </div>
 
-      <!-- LOGO -->
-      <div class="mb-3 mb-md-0">
-        <img data-src="{% static 'img/logo branca.png' %}" alt="Logo Rota Tocantinense" width=80% class="lazy-load">
-      </div>
+        <!-- Coluna 2: Links Rápidos -->
+        <div class="col-md-3 mb-4 mb-md-0 text-center text-md-start">
+          <h5 class="text-white mb-3">Links Rápidos</h5>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'inicio' %}" class="text-light text-decoration-none">Início</a></li>
+            <li><a href="{% url 'passeios' %}" class="text-light text-decoration-none">Passeios</a></li>
+            <li><a href="{% url 'hospedagens' %}" class="text-light text-decoration-none">Hospedagens</a></li>
+            <li><a href="{% url 'cupons' %}" class="text-light text-decoration-none">Cupons</a></li>
+            <li><a href="{% url 'eventos' %}" class="text-light text-decoration-none">Eventos</a></li>
+            <li><a href="{% url 'sobrenos' %}" class="text-light text-decoration-none">Sobre Nós</a></li>
+          </ul>
+        </div>
 
-      <!-- QR CODE -->
-      <div class="mb-3 mb-md-0">
-        <p>Muito + Novidade para aproveitar!</p>
-        <img data-src="{% static 'img/qrcode.png' %}" alt="QR Code" width=50% class="lazy-load">
-      </div>
+        <!-- Coluna 3: Contato e Redes Sociais -->
+        <div class="col-md-3 mb-4 mb-md-0 text-center text-md-start">
+          <h5 class="text-white mb-3">Contato</h5>
+          <p class="mb-1"><i class="bi bi-telephone-fill me-2"></i>Telefone: (63) 99999-1234</p>
+          <p class="mb-1"><i class="bi bi-envelope-fill me-2"></i>E-mail: <a href="mailto:contato@rotatocantinense.com.br" class="text-light text-decoration-none">contato@rotatocantinense.com.br</a></p>
+          <p class="mb-3"><i class="bi bi-geo-alt-fill me-2"></i>Endereço: Av. NS 10, nº7, Palmas/TO</p>
 
-      <!-- Contatos -->
-      <div>
-        <h5>Contatos</h5>
-        <p class="mb-1">Telefone: (63) 99999-1234</p>
-        <p class="mb-1">E-mail: <a href="mailto:contato@rotatocantinense.com.br"
-            class="text-info text-decoration-none">contato@rotatocantinense.com.br</a></p>
-        <p>Endereço: Av. NS 10, nº7, Palmas/TO</p>
+          <h5 class="text-white mb-3">Siga-nos</h5>
+          <div class="d-flex justify-content-center justify-content-md-start">
+            <a href="#" class="text-light me-3 footer-social-icon"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-light me-3 footer-social-icon"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-light footer-social-icon"><i class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
 
-        <!-- Redes sociais -->
-        <div class="mt-2">
-          <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="text-light"><i class="bi bi-whatsapp"></i></a>
+        <!-- Coluna 4: QR Code -->
+        <div class="col-md-3 mb-4 mb-md-0 text-center text-md-start">
+          <h5 class="text-white mb-3">Muito + Novidade!</h5>
+          <img data-src="{% static 'img/qrcode.png' %}" alt="QR Code" class="img-fluid footer-qr-code lazy-load">
+          <p class="mt-2">Escaneie para mais!</p>
         </div>
       </div>
-    </div>
 
-    <!-- Linha final -->
-    <div class="text-center">
-      © Rota Tocantinense
+      <hr class="my-4 border-secondary">
+
+      <!-- Linha final: Copyright e Links Legais -->
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0">&copy; {% now "Y" %} Rota Tocantinense. Todos os direitos reservados.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <a href="{% url 'politica_privacidade' %}" class="text-light text-decoration-none me-3">Política de Privacidade</a>
+          <a href="{% url 'termos_servico' %}" class="text-light text-decoration-none">Termos de Serviço</a>
+        </div>
+      </div>
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
