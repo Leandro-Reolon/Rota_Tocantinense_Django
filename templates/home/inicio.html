@@ -190,7 +190,7 @@
                 {% if item.descricao3 %}<li>• {{ item.descricao3 }}</li>{% endif %}
                 {% if item.descricao4 %}<li>• {{ item.descricao4 }}</li>{% endif %}
               </ul>
-              <a href="{{ item.botao_link }}" class="btn btn-primary">VER DETALHES</a>
+              <a href="{% url 'passeio_detalhes' item.passeio.id %}" class="btn btn-primary">{{ item.botao_texto }}</a>
             </div>
           </div>
         </div>

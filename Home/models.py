@@ -31,7 +31,7 @@ class MaisProcurado(models.Model):
     descricao3 = models.CharField(max_length=100, blank=True)
     descricao4 = models.CharField(max_length=100, blank=True)
     botao_texto = models.CharField(max_length=50, default="VER MAIS!")
-    botao_link = models.URLField(blank=True)
+    passeio = models.ForeignKey('Passeio', on_delete=models.SET_NULL, null=True, blank=True)  # Correção
 
     def __str__(self):
         return self.titulo
