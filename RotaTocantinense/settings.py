@@ -23,10 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*@*+8$n-x=6i5xac#-g2+*a$8cr1wlhkepucp#j2ysh1z88vs*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False # implementa segurança
 
 ALLOWED_HOSTS = ['rotatocantinense.up.railway.app', '127.0.0.1', 'localhost']
 
+CSRF_TRUSTED_ORIGINS = ['https://rotatocantinense.up.railway.app'] # habilita o login
 
 # Application definition
 
