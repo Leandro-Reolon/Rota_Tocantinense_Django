@@ -145,7 +145,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles' # Indicando ao django onde encontrar os a
 # Media files (User uploads)
 # https://docs.djangoproject.com/en/5.2/topics/files/
 
-MEDIA_URL = '/media/media/' 
+MEDIA_URL = '/media/'
 
 if 'RAILWAY_ENVIRONMENT' in os.environ:
     # --- Configuração para o RAILWAY ---
