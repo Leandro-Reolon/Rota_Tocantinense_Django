@@ -76,14 +76,18 @@ WSGI_APPLICATION = 'RotaTocantinense.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-if os.environ.get('RAILWAY_ENVIRONMENT'):
+if 'RAILWAY_ENVIRONMENT' in os.environ:
+    # --- Configuração para o RAILWAY ---
+    # Detecta que está no servidor e usa o Volume em /data
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': '/data/db.sqlite3',
+            'NAME': os.path.join('/data', 'db.sqlite3'),
         }
     }
 else:
+    # --- Configuração para a MÁQUINA LOCAL ---
+    # Não encontra a variável do Railway e usa o arquivo local
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -135,7 +139,13 @@ STATIC_ROOT = BASE_DIR / 'staticfiles' # Indicando ao django onde encontrar os a
 # https://docs.djangoproject.com/en/5.2/topics/files/
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+
+if 'RAILWAY_ENVIRONMENT' in os.environ:
+    # --- Configuração para o RAILWAY ---
+    MEDIA_ROOT = os.path.join('/data', 'media')
+else:
+    # --- Configuração para a MÁQUINA LOCAL ---
+    MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

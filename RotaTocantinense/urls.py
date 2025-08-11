@@ -1,3 +1,5 @@
+# RotaTocantinense/urls.py
+
 from django.urls import path, include
 from django.contrib import admin
 from django.conf import settings
@@ -8,5 +10,5 @@ urlpatterns = [
     path('', include('Home.urls')),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # verificar arquivos de mídia durante o desenvolvimento
+# Deixe apenas esta linha no final para servir os arquivos de mídia em produção e desenvolvimento
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
