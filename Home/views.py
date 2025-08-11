@@ -111,8 +111,8 @@ def passeios(request):
         passeios = Passeio.objects.all()
     return render(request, 'home/passeios.html', {'passeios': passeios})
 
-def passeio_detalhes(request, id):
-    passeio = get_object_or_404(Passeio, pk=id)
+def passeio_detalhes(request, passeio_id):
+    passeio = get_object_or_404(Passeio, pk=passeio_id)
     return render(request, 'home/passeio_detalhes.html', {'passeio': passeio})
 
 def hospedagens(request):
