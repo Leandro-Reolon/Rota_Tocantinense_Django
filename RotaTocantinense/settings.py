@@ -23,7 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*@*+8$n-x=6i5xac#-g2+*a$8cr1wlhkepucp#j2ysh1z88vs*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False # implementa segurança
+if 'RAILWAY_ENVIRONMENT' in os.environ:
+    # No Railway, DEBUG é False (seguro)
+    DEBUG = False
+else:
+    # Na sua máquina local, DEBUG é True (para desenvolvimento)
+    DEBUG = True
+    
+    
 
 ALLOWED_HOSTS = ['rotatocantinense.up.railway.app', '127.0.0.1', 'localhost']
 
