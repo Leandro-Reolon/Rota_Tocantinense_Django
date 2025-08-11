@@ -23,12 +23,15 @@ def cadastro(request):
         password = request.POST['password']
         nome = request.POST['nome']
         endereco = request.POST['endereco']
+
         # Cria o usuário
         user = User.objects.create_user(username=username, email=email, password=password, first_name=nome)
         user.save()
-        # Cria o perfil associado ao usuário
-        profile = Profile.objects.create(user=user, address=endereco)
-        profile.save()
+
+        # Atualiza o endereço do perfil criado automaticamente
+        user.profile.address = endereco
+        user.profile.save()
+
         return redirect('login')
     return render(request, 'home/cadastro.html')
 
